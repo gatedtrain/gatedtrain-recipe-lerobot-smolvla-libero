@@ -52,11 +52,13 @@ import hashlib
 import json
 import math
 import os
+import pwd
 import random
 import shutil
 import struct
 import sys
 import tempfile
+import unittest
 from pathlib import Path
 from typing import Any, Callable
 
@@ -69,6 +71,17 @@ NEUTRAL_TREE = "/srv/python/cpython-3.12.16-linux-x86_64-gnu"
 # The real runtime (the override, else this checkout's runtime/): its committed scripts, lock, manifests and item sets
 # are read by the real-file tests even when the scenario runs on the stand-in.
 REAL_RUNTIME = Path(os.environ.get(RUNTIME_ENV) or REPO / "runtime")
+
+
+def run_user() -> str:
+    """The container's `<uid>:<gid>` in fixture requests and records: the uid running the tests and its primary group,
+    so the output directories the tests create are owned by the container's uid (EXT-63) whoever runs them. The launch
+    rules refuse root, so a test that needs it skips under uid 0."""
+    uid = os.getuid()
+    if uid == 0:
+        raise unittest.SkipTest("the launch rules refuse a container running as root (uid 0); run the tests as a "
+                                "non-root user")
+    return f"{uid}:{pwd.getpwuid(uid).pw_gid}"
 
 
 def _stand_in_runtime() -> None:
@@ -763,7 +776,7 @@ class LerobotScenario:
                "framework": {"name": "lerobot", "version": "0.7.0", "commit": None},
                "training_seed": SEED, "gpus": True, "argv": self.argv(),
                "mounts": self.mounts(self.stage_out, base_cut=self.base), "tmpfs": ["/tmp"], "network": "none",
-               "network_reason": None, "user": "1000:1000", "env_names": list(ENV_NAMES), "gpu_est_h": 0.4,
+               "network_reason": None, "user": run_user(), "env_names": list(ENV_NAMES), "gpu_est_h": 0.4,
                "gpu_used_h": 30.0, "output_dir": str(self.stage_out), "output_root": str(self.output_root),
                "gpu_step_sha256": file_sha256(self.host_work / "bin" / "gpu-step.sh"), "allow_network": False,
                "interpreter_path": f"{CPYTHON}/bin/python3.12",
@@ -792,7 +805,7 @@ class LerobotScenario:
         req = {"area": AREA, "label": f"mm-a8-vla-{profile}", "host_work": str(self.host_work),
                "runtime": {"kind": "venv_in_container", "image": IMAGE, "venv_lock": str(self.lock)},
                "framework": {"name": "lerobot", "version": "0.7.0", "commit": None}, "training_seed": SEED,
-               "gpus": True, "network": "none", "network_reason": None, "user": "1000:1000", "env": dict(ENV),
+               "gpus": True, "network": "none", "network_reason": None, "user": run_user(), "env": dict(ENV),
                "mounts": self.mounts(out, base_cut=self.base), "tmpfs": ["/tmp"], "output_dir": str(out),
                "gpu_est_h": 0.1, "argv": argv}
         req.update(overrides)
