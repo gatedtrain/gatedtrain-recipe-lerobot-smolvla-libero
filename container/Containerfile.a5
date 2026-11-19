@@ -1,0 +1,16 @@
+# Area 5 (SD3.5, Flow-GRPO, OCR) runtime image: the area-1 CUDA image plus the X11/GL system libraries that the
+# opencv-python wheels pulled in by paddleocr 2.10 and python-doctr load at `import cv2` (libxcb, libGL, libglib).
+# Found by the first smoke (2026-11-14): ImportError: libxcb.so.1. Python and the area venv stay mounted read-only
+# from the host (runtime kind venv_in_container, MM-32); the image adds system libraries only.
+# Build: docker build --network host -t gatedtrain-a5-runtime:1 -f Containerfile.a5 .
+# Packages come from the Ubuntu snapshot of 2026-10-29, so a rebuild resolves the same versions; the installed list
+# is in /etc/ptc-a5-packages.txt (a file name kept from the earlier project name: the RUN instruction stays
+# byte-identical to the one that built the published run's image, which was tagged `ptc-a5-runtime:1`).
+FROM docker.io/nvidia/cuda:13.0.3-devel-ubuntu24.04@sha256:b7ae301dea2c162444795462ce17a05f6a516e5a75944b57af5b88540a1a2266
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends ca-certificates \
+ && apt-get update --snapshot 20261029T000000Z \
+ && apt-get install -y --no-install-recommends --snapshot 20261029T000000Z libgl1 libglib2.0-0t64 libx11-6 libxcb1 \
+    libxext6 libsm6 libxrender1 \
+ && rm -rf /var/lib/apt/lists/* \
+ && dpkg-query -W -f='${Package}=${Version}\n' > /etc/ptc-a5-packages.txt

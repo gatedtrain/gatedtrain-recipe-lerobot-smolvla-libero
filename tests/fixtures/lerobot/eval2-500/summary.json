@@ -1,0 +1,108 @@
+{
+  "blocked_connections": [],
+  "checkpoint": "/inputs/cut",
+  "cut_model_files_sha256": "sha256:f456275d85953f7761f700e8fb0d6323751b0fb9a80b2239869e2a556ed5802a",
+  "device": "cuda",
+  "device_free_gb_min": 5.547,
+  "device_memory_max": {
+    "peak_allocated_gb": 1.245,
+    "peak_reserved_gb": 1.265
+  },
+  "env_version_nondefault": {},
+  "env_version_sha256": "sha256:d0cedb3cac1521b3ae7a53125d8198ac06a4d09dd9513ab7ab779d585b11881f",
+  "envs_per_worker": 1,
+  "episodes": 100,
+  "error_reasons": {
+    "item_timeout": 0,
+    "worker_died": 0
+  },
+  "errors": 0,
+  "eval_seeds": [
+    11
+  ],
+  "global_step": 500,
+  "item_timeout_s": 300.0,
+  "items": "probe",
+  "missing_hashes": [
+    "model_hash",
+    "item_set_hash"
+  ],
+  "mm38": {
+    "binary": true,
+    "degenerate": false,
+    "item_mean": 0.26,
+    "n_items_scored": 100,
+    "rule": "binary metric: degenerate only at mean 0 or 1 (MM-38)",
+    "zero_errors": true
+  },
+  "n_items": 100,
+  "normalizer_sha256": "sha256:a780970472e85d8669432d041f5dcbf8412c9c96c031b82837bc6d76a57dd3e6",
+  "outcomes": {
+    "failed": 0,
+    "nan_action": 0,
+    "success": 26,
+    "timeout": 74
+  },
+  "per_task_success": {
+    "0": {
+      "mean": 0.3,
+      "n": 10
+    },
+    "1": {
+      "mean": 0.1,
+      "n": 10
+    },
+    "2": {
+      "mean": 0.4,
+      "n": 10
+    },
+    "3": {
+      "mean": 0.2,
+      "n": 10
+    },
+    "4": {
+      "mean": 0.4,
+      "n": 10
+    },
+    "5": {
+      "mean": 0.0,
+      "n": 10
+    },
+    "6": {
+      "mean": 0.3,
+      "n": 10
+    },
+    "7": {
+      "mean": 0.5,
+      "n": 10
+    },
+    "8": {
+      "mean": 0.3,
+      "n": 10
+    },
+    "9": {
+      "mean": 0.1,
+      "n": 10
+    }
+  },
+  "profile": "base",
+  "sampler_hash": "sha256:dcc283f18311432a6445fbecab821f64271b3bc90d097f241c550eafc433a6c7",
+  "seconds_wall": 262.8,
+  "stage": "base",
+  "steps_to_success": {
+    "mean": 243.18,
+    "n": 100,
+    "sd": 62.892465544151015
+  },
+  "success": {
+    "mean": 0.26,
+    "n": 100,
+    "sd": 0.44084400227680803
+  },
+  "wall_s_per_episode": {
+    "mean": 7.65404,
+    "n": 100,
+    "sd": 3.150294316601565
+  },
+  "workers": 8
+}

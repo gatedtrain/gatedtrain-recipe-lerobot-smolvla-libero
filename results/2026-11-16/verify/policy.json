@@ -1,0 +1,215 @@
+{
+  "base_config": {
+    "vlm_model_name": "HuggingFaceTB/SmolVLM2-500M-Video-Instruct",
+    "load_vlm_weights": true,
+    "input_features": [
+      "observation.images.camera1",
+      "observation.images.camera2",
+      "observation.images.camera3",
+      "observation.state"
+    ],
+    "chunk_size": 50,
+    "n_action_steps": 50,
+    "train_expert_only": true,
+    "freeze_vision_encoder": true
+  },
+  "policy_load_s": 1.2,
+  "rss_after_load_gb": 3.94,
+  "policy_features": {
+    "input": {
+      "observation.images.camera1": [
+        3,
+        256,
+        256
+      ],
+      "observation.images.camera2": [
+        3,
+        256,
+        256
+      ],
+      "observation.state": [
+        8
+      ]
+    },
+    "output": {
+      "action": [
+        7
+      ]
+    }
+  },
+  "params": {
+    "total": 450046176,
+    "trainable": 99880992,
+    "dtypes": [
+      "torch.bfloat16",
+      "torch.float32"
+    ]
+  },
+  "delta_timestamps_keys": {
+    "observation.images.image": 1,
+    "observation.images.image2": 1,
+    "observation.state": 1,
+    "action": 50
+  },
+  "raw_batch": {
+    "observation.state": [
+      2,
+      1,
+      8
+    ],
+    "action": [
+      2,
+      50,
+      7
+    ],
+    "timestamp": [
+      2
+    ],
+    "frame_index": [
+      2
+    ],
+    "episode_index": [
+      2
+    ],
+    "index": [
+      2
+    ],
+    "task_index": [
+      2
+    ],
+    "observation.images.image_is_pad": [
+      2,
+      1
+    ],
+    "observation.images.image2_is_pad": [
+      2,
+      1
+    ],
+    "observation.state_is_pad": [
+      2,
+      1
+    ],
+    "action_is_pad": [
+      2,
+      50
+    ],
+    "observation.images.image": [
+      2,
+      3,
+      256,
+      256
+    ],
+    "observation.images.image2": [
+      2,
+      3,
+      256,
+      256
+    ]
+  },
+  "raw_batch_ids": {
+    "index": [
+      153511,
+      153512
+    ],
+    "episode_index": [
+      807,
+      807
+    ],
+    "frame_index": [
+      0,
+      1
+    ]
+  },
+  "task": [
+    "pick up the orange juice and place it in the basket",
+    "pick up the orange juice and place it in the basket"
+  ],
+  "pre_batch": {
+    "action": [
+      2,
+      50,
+      7
+    ],
+    "observation.images.image_is_pad": [
+      2,
+      1
+    ],
+    "observation.images.image2_is_pad": [
+      2,
+      1
+    ],
+    "observation.state_is_pad": [
+      2,
+      1
+    ],
+    "action_is_pad": [
+      2,
+      50
+    ],
+    "index": [
+      2
+    ],
+    "task_index": [
+      2
+    ],
+    "episode_index": [
+      2
+    ],
+    "frame_index": [
+      2
+    ],
+    "timestamp": [
+      2
+    ],
+    "observation.state": [
+      2,
+      1,
+      8
+    ],
+    "observation.images.camera1_is_pad": [
+      2,
+      1
+    ],
+    "observation.images.camera2_is_pad": [
+      2,
+      1
+    ],
+    "observation.images.camera1": [
+      2,
+      3,
+      256,
+      256
+    ],
+    "observation.images.camera2": [
+      2,
+      3,
+      256,
+      256
+    ],
+    "observation.language.tokens": [
+      2,
+      48
+    ],
+    "observation.language.attention_mask": [
+      2,
+      48
+    ]
+  },
+  "forward_s": 4.93,
+  "backward_s": 29.07,
+  "loss": 1.3957878351211548,
+  "loss_finite": true,
+  "forward_output_keys": [
+    "loss",
+    "losses_after_forward",
+    "losses_after_in_ep_bound",
+    "losses_after_rm_padding"
+  ],
+  "select_action_s": 3.73,
+  "action_shape": [
+    1,
+    7
+  ],
+  "blocked_connections": [],
+  "peak_rss_gb": 3.94
+}

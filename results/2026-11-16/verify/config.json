@@ -1,0 +1,12 @@
+{
+  "config_yaml": "<data-root>/ptc-mm/area8-vla/libero-config/config.yaml",
+  "content": {
+    "benchmark_root": "<data-root>/ptc-mm/area8-vla/.venv/lib/python3.12/site-packages/libero/libero",
+    "bddl_files": "<data-root>/ptc-mm/area8-vla/.venv/lib/python3.12/site-packages/libero/libero/bddl_files",
+    "init_states": "<data-root>/ptc-mm/area8-vla/.venv/lib/python3.12/site-packages/libero/libero/init_files",
+    "datasets": "<data-root>/ptc-mm/area8-vla/libero-datasets-unused",
+    "assets": "<data-root>/ptc-mm/area8-vla/assets/libero-assets"
+  },
+  "blocked_connections": [],
+  "peak_rss_gb": 0.01
+}

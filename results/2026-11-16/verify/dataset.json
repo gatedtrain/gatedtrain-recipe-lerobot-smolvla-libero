@@ -1,0 +1,352 @@
+{
+  "load_s": 1.88,
+  "num_frames": 66984,
+  "num_episodes": 454,
+  "fps": 10.0,
+  "video_backend": "pyav",
+  "features": {
+    "observation.images.image": {
+      "dtype": "video",
+      "shape": [
+        256,
+        256,
+        3
+      ]
+    },
+    "observation.images.image2": {
+      "dtype": "video",
+      "shape": [
+        256,
+        256,
+        3
+      ]
+    },
+    "observation.state": {
+      "dtype": "float32",
+      "shape": [
+        8
+      ]
+    },
+    "action": {
+      "dtype": "float32",
+      "shape": [
+        7
+      ]
+    },
+    "timestamp": {
+      "dtype": "float32",
+      "shape": [
+        1
+      ]
+    },
+    "frame_index": {
+      "dtype": "int64",
+      "shape": [
+        1
+      ]
+    },
+    "episode_index": {
+      "dtype": "int64",
+      "shape": [
+        1
+      ]
+    },
+    "index": {
+      "dtype": "int64",
+      "shape": [
+        1
+      ]
+    },
+    "task_index": {
+      "dtype": "int64",
+      "shape": [
+        1
+      ]
+    }
+  },
+  "items": [
+    {
+      "i": 0,
+      "get_s": 0.291,
+      "observation.state": {
+        "shape": [
+          8
+        ],
+        "dtype": "torch.float32"
+      },
+      "action": {
+        "shape": [
+          7
+        ],
+        "dtype": "torch.float32"
+      },
+      "timestamp": {
+        "shape": [],
+        "dtype": "torch.float32",
+        "value": 0.0
+      },
+      "frame_index": {
+        "shape": [],
+        "dtype": "torch.int64",
+        "value": 0
+      },
+      "episode_index": {
+        "shape": [],
+        "dtype": "torch.int64",
+        "value": 807
+      },
+      "index": {
+        "shape": [],
+        "dtype": "torch.int64",
+        "value": 153511
+      },
+      "task_index": {
+        "shape": [],
+        "dtype": "torch.int64",
+        "value": 20
+      },
+      "observation.images.image": {
+        "shape": [
+          3,
+          256,
+          256
+        ],
+        "dtype": "torch.float32",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.5337
+      },
+      "observation.images.image2": {
+        "shape": [
+          3,
+          256,
+          256
+        ],
+        "dtype": "torch.float32",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.5228
+      },
+      "task": "pick up the orange juice and place it in the basket"
+    },
+    {
+      "i": 1,
+      "get_s": 0.011,
+      "observation.state": {
+        "shape": [
+          8
+        ],
+        "dtype": "torch.float32"
+      },
+      "action": {
+        "shape": [
+          7
+        ],
+        "dtype": "torch.float32"
+      },
+      "timestamp": {
+        "shape": [],
+        "dtype": "torch.float32",
+        "value": 0.10000000149011612
+      },
+      "frame_index": {
+        "shape": [],
+        "dtype": "torch.int64",
+        "value": 1
+      },
+      "episode_index": {
+        "shape": [],
+        "dtype": "torch.int64",
+        "value": 807
+      },
+      "index": {
+        "shape": [],
+        "dtype": "torch.int64",
+        "value": 153512
+      },
+      "task_index": {
+        "shape": [],
+        "dtype": "torch.int64",
+        "value": 20
+      },
+      "observation.images.image": {
+        "shape": [
+          3,
+          256,
+          256
+        ],
+        "dtype": "torch.float32",
+        "min": 0.0,
+        "max": 0.9882,
+        "mean": 0.5336
+      },
+      "observation.images.image2": {
+        "shape": [
+          3,
+          256,
+          256
+        ],
+        "dtype": "torch.float32",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.5241
+      },
+      "task": "pick up the orange juice and place it in the basket"
+    },
+    {
+      "i": 33492,
+      "get_s": 0.064,
+      "observation.state": {
+        "shape": [
+          8
+        ],
+        "dtype": "torch.float32"
+      },
+      "action": {
+        "shape": [
+          7
+        ],
+        "dtype": "torch.float32"
+      },
+      "timestamp": {
+        "shape": [],
+        "dtype": "torch.float32",
+        "value": 12.5
+      },
+      "frame_index": {
+        "shape": [],
+        "dtype": "torch.int64",
+        "value": 125
+      },
+      "episode_index": {
+        "shape": [],
+        "dtype": "torch.int64",
+        "value": 1033
+      },
+      "index": {
+        "shape": [],
+        "dtype": "torch.int64",
+        "value": 187003
+      },
+      "task_index": {
+        "shape": [],
+        "dtype": "torch.int64",
+        "value": 25
+      },
+      "observation.images.image": {
+        "shape": [
+          3,
+          256,
+          256
+        ],
+        "dtype": "torch.float32",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.5306
+      },
+      "observation.images.image2": {
+        "shape": [
+          3,
+          256,
+          256
+        ],
+        "dtype": "torch.float32",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.5273
+      },
+      "task": "pick up the milk and place it in the basket"
+    },
+    {
+      "i": 66983,
+      "get_s": 0.083,
+      "observation.state": {
+        "shape": [
+          8
+        ],
+        "dtype": "torch.float32"
+      },
+      "action": {
+        "shape": [
+          7
+        ],
+        "dtype": "torch.float32"
+      },
+      "timestamp": {
+        "shape": [],
+        "dtype": "torch.float32",
+        "value": 15.100000381469727
+      },
+      "frame_index": {
+        "shape": [],
+        "dtype": "torch.int64",
+        "value": 151
+      },
+      "episode_index": {
+        "shape": [],
+        "dtype": "torch.int64",
+        "value": 1260
+      },
+      "index": {
+        "shape": [],
+        "dtype": "torch.int64",
+        "value": 220494
+      },
+      "task_index": {
+        "shape": [],
+        "dtype": "torch.int64",
+        "value": 21
+      },
+      "observation.images.image": {
+        "shape": [
+          3,
+          256,
+          256
+        ],
+        "dtype": "torch.float32",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.5387
+      },
+      "observation.images.image2": {
+        "shape": [
+          3,
+          256,
+          256
+        ],
+        "dtype": "torch.float32",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.5888
+      },
+      "task": "pick up the ketchup and place it in the basket"
+    }
+  ],
+  "first_last_episode": [
+    807,
+    1260
+  ],
+  "stats_keys": [
+    "action",
+    "episode_index",
+    "frame_index",
+    "index",
+    "observation.images.image",
+    "observation.images.image2",
+    "observation.state",
+    "task_index",
+    "timestamp"
+  ],
+  "stats_state_mean": [
+    -0.0465,
+    0.0344,
+    0.7646,
+    2.9722,
+    -0.2205,
+    -0.1256,
+    0.0269,
+    -0.0272
+  ],
+  "blocked_connections": [],
+  "peak_rss_gb": 1.03
+}

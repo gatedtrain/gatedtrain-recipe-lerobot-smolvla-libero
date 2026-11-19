@@ -1,0 +1,4 @@
+# Area "VLA" trainer config for ext-collect (EXT-2): the adapter and the launch profile.
+# prototype, unpromotable.
+backend: lerobot_smolvla
+profile: full

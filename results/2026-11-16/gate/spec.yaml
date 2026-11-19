@@ -1,0 +1,27 @@
+# Area "VLA" spec: LeRobot SmolVLA stage-2 expert-only SFT gated against its stage-1 base cut (the maintainers' decision record
+# "Area 8 base cut", "Area 8 adapter and smoke binding"). prototype, unpromotable.
+workflow: mm-a8-vla-lerobot-smolvla
+version: 1
+budget: {gpu_hours: 24}
+artifacts:
+  base:         {type: model_checkpoint, uri: "file:<data-root>/ptc-mm/out/area8-vla/base-1/cuts/checkpoint-500@sha256:9b5f49caa23798db9693c329f7451db55c93e9c5f31d5db42c0752e8d38977a6"}
+  frames:       {type: training_dataset, uri: "file:<data-root>/ptc-mm/area8-vla/frames"}
+  items:        {type: item_set, uri: "file:<data-root>/ptc-mm/area8-vla/items-gate@sha256:ff603f4232be6c1d53cdfec494e3f73391ce4abdba1cdb7148fdcd7948587e05", disjoint_from: [frames]}
+  trainer_cfg:  {type: trainer_config, uri: "file:trainer.yaml@sha256:582673ec75fd2b9e3de16f88857782181321dc9782cbdb985e7c0412a3b60ace"}
+  registration: {type: registration, uri: "file:registration.yaml@sha256:37f9e48a16156ddccf15f4aa544d31eb0a3a5e69191985b7765d6467573ac9fb"}
+stages:
+  - id: sft
+    uses: sft.lerobot@0.1
+    algorithm: sft
+    model_family: vla.smolvla@0.1
+    inputs: {model: base, data: frames, config: trainer_cfg}
+    outputs: {model: sft_ckpt}
+  - id: quality_gate
+    uses: gate.superiority@1.0
+    evaluator: libero.lerobot_items@0.1
+    sampler: deployment
+    inputs: {model: sft_ckpt, baseline: base, items: items, registration: registration}
+    test: {metric: success, alpha: 0.025, power: 0.80, mde: 0.12, cluster_by: item, seeds: 2}
+    on_fail: stop
+    owner: skeleton-demo
+    escalation: [skeleton-demo-lead]

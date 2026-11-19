@@ -1,0 +1,59 @@
+{
+  "assets_path": "<data-root>/ptc-mm/area8-vla/assets/libero-assets",
+  "config_file": "<data-root>/ptc-mm/area8-vla/libero-config/config.yaml",
+  "n_tasks": 10,
+  "tasks": [
+    "pick_up_the_alphabet_soup_and_place_it_in_the_basket",
+    "pick_up_the_cream_cheese_and_place_it_in_the_basket",
+    "pick_up_the_salad_dressing_and_place_it_in_the_basket",
+    "pick_up_the_bbq_sauce_and_place_it_in_the_basket",
+    "pick_up_the_ketchup_and_place_it_in_the_basket",
+    "pick_up_the_tomato_sauce_and_place_it_in_the_basket",
+    "pick_up_the_butter_and_place_it_in_the_basket",
+    "pick_up_the_milk_and_place_it_in_the_basket",
+    "pick_up_the_chocolate_pudding_and_place_it_in_the_basket",
+    "pick_up_the_orange_juice_and_place_it_in_the_basket"
+  ],
+  "init_states_task0": {
+    "type": "ndarray",
+    "shape": [
+      50,
+      110
+    ],
+    "dtype": "float64"
+  },
+  "task0": {
+    "name": "pick_up_the_alphabet_soup_and_place_it_in_the_basket",
+    "language": "pick up the alphabet soup and place it in the basket",
+    "bddl": "<data-root>/ptc-mm/area8-vla/.venv/lib/python3.12/site-packages/libero/libero/bddl_files/libero_object/pick_up_the_alphabet_soup_and_place_it_in_the_basket.bddl"
+  },
+  "physics_env_build_reset_s": 4.41,
+  "physics_10_steps_s": 2.565,
+  "physics_step": {
+    "obs_keys": [
+      "alphabet_soup_1_pos",
+      "alphabet_soup_1_quat",
+      "alphabet_soup_1_to_robot0_eef_pos",
+      "alphabet_soup_1_to_robot0_eef_quat",
+      "basket_1_pos",
+      "basket_1_quat",
+      "basket_1_to_robot0_eef_pos",
+      "basket_1_to_robot0_eef_quat",
+      "butter_1_pos",
+      "butter_1_quat",
+      "butter_1_to_robot0_eef_pos",
+      "butter_1_to_robot0_eef_quat"
+    ],
+    "n_obs_keys": 38,
+    "reward": 0.0,
+    "done": false,
+    "check_success": false,
+    "eef_pos": [
+      -0.1526,
+      -0.0063,
+      0.2484
+    ]
+  },
+  "blocked_connections": [],
+  "peak_rss_gb": 2.16
+}

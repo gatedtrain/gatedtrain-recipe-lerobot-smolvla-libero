@@ -1,0 +1,46 @@
+[project]
+name = "gatedtrain-recipe-lerobot-smolvla-libero"
+version = "0.1.0"
+description = "gatedtrain recipe: LeRobot SmolVLA expert-only SFT in two stages on LIBERO-Object, with its gatedtrain adapter `lerobot_smolvla` (prototype)."
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE", "THIRD_PARTY_NOTICES.md"]
+authors = [{name = "The gatedtrain Authors"}]
+requires-python = ">=3.12,<3.14"
+keywords = [
+    "post-training",
+    "gatedtrain",
+    "lerobot",
+    "smolvla",
+    "libero",
+    "robot-learning",
+    "vision-language-action",
+    "imitation-learning",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+# The adapter is pure Python; the training and evaluation environment is runtime/ (its own pyproject.toml and uv.lock).
+dependencies = ["gatedtrain>=0.3,<0.4"]
+
+[project.urls]
+Homepage = "https://github.com/gatedtrain/gatedtrain-recipe-lerobot-smolvla-libero"
+Source = "https://github.com/gatedtrain/gatedtrain-recipe-lerobot-smolvla-libero"
+Issues = "https://github.com/gatedtrain/gatedtrain-recipe-lerobot-smolvla-libero/issues"
+
+[project.entry-points."gatedtrain.adapters"]
+lerobot_smolvla = "gatedtrain_recipe_lerobot_smolvla_libero.rows:PLUGIN"
+
+[build-system]
+requires = ["setuptools>=78"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

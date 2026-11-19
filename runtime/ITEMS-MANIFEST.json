@@ -1,0 +1,110 @@
+{
+  "n_tasks": 10,
+  "schema": "ptc_mm.libero_items_manifest",
+  "schema_version": "1.0",
+  "sets": {
+    "gate": {
+      "dir": "items-gate",
+      "files": {
+        "item_set_meta.json": "sha256:d752dd2db7f2ca3d6353846bbd2e7b6a076cde725eb558edd3312ef79822886e",
+        "items.jsonl": "sha256:13c8a4385202699ecca96a6ccbc9441ed375ff64f4e854316ffae5155278d98e"
+      },
+      "n_items": 400
+    },
+    "probe": {
+      "dir": "items-probe",
+      "files": {
+        "item_set_meta.json": "sha256:e04dbaf003820d8356ca6c46dd65ab6d9438c2585d78dd4986f026351acf258a",
+        "items.jsonl": "sha256:824c2f9c6a94ec4616cf898741fddfc7eca54f160bc9e91dbaf361b377e58a9f"
+      },
+      "n_items": 100
+    }
+  },
+  "suite": "libero_object",
+  "tags": [
+    "prototype",
+    "unpromotable"
+  ],
+  "tasks": [
+    {
+      "init_file": "<runtime>/.venv/lib/python3.12/site-packages/libero/libero/init_files/libero_object/pick_up_the_alphabet_soup_and_place_it_in_the_basket.pruned_init",
+      "init_file_name": "pick_up_the_alphabet_soup_and_place_it_in_the_basket.pruned_init",
+      "init_file_sha256": "sha256:b9023e5546b239cacb2aaa3c76df3b73c3de6f97500fea5e27a0db9827002a19",
+      "language": "pick up the alphabet soup and place it in the basket",
+      "task": "pick_up_the_alphabet_soup_and_place_it_in_the_basket",
+      "task_id": 0
+    },
+    {
+      "init_file": "<runtime>/.venv/lib/python3.12/site-packages/libero/libero/init_files/libero_object/pick_up_the_cream_cheese_and_place_it_in_the_basket.pruned_init",
+      "init_file_name": "pick_up_the_cream_cheese_and_place_it_in_the_basket.pruned_init",
+      "init_file_sha256": "sha256:5ea5483bca8abd80a8f1935e2c60570d60eaaf6a985c283d62805b46fb76aa94",
+      "language": "pick up the cream cheese and place it in the basket",
+      "task": "pick_up_the_cream_cheese_and_place_it_in_the_basket",
+      "task_id": 1
+    },
+    {
+      "init_file": "<runtime>/.venv/lib/python3.12/site-packages/libero/libero/init_files/libero_object/pick_up_the_salad_dressing_and_place_it_in_the_basket.pruned_init",
+      "init_file_name": "pick_up_the_salad_dressing_and_place_it_in_the_basket.pruned_init",
+      "init_file_sha256": "sha256:6f6793ee550419a4a79dcb6ac83a9ba7bbf5e76e92fef26b82b6a7a10f72b04a",
+      "language": "pick up the salad dressing and place it in the basket",
+      "task": "pick_up_the_salad_dressing_and_place_it_in_the_basket",
+      "task_id": 2
+    },
+    {
+      "init_file": "<runtime>/.venv/lib/python3.12/site-packages/libero/libero/init_files/libero_object/pick_up_the_bbq_sauce_and_place_it_in_the_basket.pruned_init",
+      "init_file_name": "pick_up_the_bbq_sauce_and_place_it_in_the_basket.pruned_init",
+      "init_file_sha256": "sha256:c524077b0c23006f28fc06760a5b5ab37eee67287b5329e84a34b0a8bd599b4a",
+      "language": "pick up the bbq sauce and place it in the basket",
+      "task": "pick_up_the_bbq_sauce_and_place_it_in_the_basket",
+      "task_id": 3
+    },
+    {
+      "init_file": "<runtime>/.venv/lib/python3.12/site-packages/libero/libero/init_files/libero_object/pick_up_the_ketchup_and_place_it_in_the_basket.pruned_init",
+      "init_file_name": "pick_up_the_ketchup_and_place_it_in_the_basket.pruned_init",
+      "init_file_sha256": "sha256:b987f7b11e8f9b47353cd7882e1da38ecdf6ec9715ad8a84346583ea71049fd3",
+      "language": "pick up the ketchup and place it in the basket",
+      "task": "pick_up_the_ketchup_and_place_it_in_the_basket",
+      "task_id": 4
+    },
+    {
+      "init_file": "<runtime>/.venv/lib/python3.12/site-packages/libero/libero/init_files/libero_object/pick_up_the_tomato_sauce_and_place_it_in_the_basket.pruned_init",
+      "init_file_name": "pick_up_the_tomato_sauce_and_place_it_in_the_basket.pruned_init",
+      "init_file_sha256": "sha256:2326da7ccacd3ebc75d80847f92d2e310b537b8dbbd8a76840a29b13f00f9a65",
+      "language": "pick up the tomato sauce and place it in the basket",
+      "task": "pick_up_the_tomato_sauce_and_place_it_in_the_basket",
+      "task_id": 5
+    },
+    {
+      "init_file": "<runtime>/.venv/lib/python3.12/site-packages/libero/libero/init_files/libero_object/pick_up_the_butter_and_place_it_in_the_basket.pruned_init",
+      "init_file_name": "pick_up_the_butter_and_place_it_in_the_basket.pruned_init",
+      "init_file_sha256": "sha256:f0925a8653c5902c5a4d78a2053365382ad7d05be7f059abe19c2004ffc5dc59",
+      "language": "pick up the butter and place it in the basket",
+      "task": "pick_up_the_butter_and_place_it_in_the_basket",
+      "task_id": 6
+    },
+    {
+      "init_file": "<runtime>/.venv/lib/python3.12/site-packages/libero/libero/init_files/libero_object/pick_up_the_milk_and_place_it_in_the_basket.pruned_init",
+      "init_file_name": "pick_up_the_milk_and_place_it_in_the_basket.pruned_init",
+      "init_file_sha256": "sha256:4a86269faf4c98baff4c1428997ac828d00c56922a9a131be94e19b6027e1db2",
+      "language": "pick up the milk and place it in the basket",
+      "task": "pick_up_the_milk_and_place_it_in_the_basket",
+      "task_id": 7
+    },
+    {
+      "init_file": "<runtime>/.venv/lib/python3.12/site-packages/libero/libero/init_files/libero_object/pick_up_the_chocolate_pudding_and_place_it_in_the_basket.pruned_init",
+      "init_file_name": "pick_up_the_chocolate_pudding_and_place_it_in_the_basket.pruned_init",
+      "init_file_sha256": "sha256:1124189363e76609da182dd92217cd02c41be58e88c42e3949d23ba160da75a5",
+      "language": "pick up the chocolate pudding and place it in the basket",
+      "task": "pick_up_the_chocolate_pudding_and_place_it_in_the_basket",
+      "task_id": 8
+    },
+    {
+      "init_file": "<runtime>/.venv/lib/python3.12/site-packages/libero/libero/init_files/libero_object/pick_up_the_orange_juice_and_place_it_in_the_basket.pruned_init",
+      "init_file_name": "pick_up_the_orange_juice_and_place_it_in_the_basket.pruned_init",
+      "init_file_sha256": "sha256:35b19ffab1fe08c6457ebd732c37d04b9bc0d22b7ce7de015986092ddddea151",
+      "language": "pick up the orange juice and place it in the basket",
+      "task": "pick_up_the_orange_juice_and_place_it_in_the_basket",
+      "task_id": 9
+    }
+  ]
+}

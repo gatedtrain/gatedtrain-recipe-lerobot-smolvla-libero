@@ -1,0 +1,57 @@
+# Area "VLA" fixture registration (verifier-owned; prototype, unpromotable). tests/README.md section 11.26. Rendered by
+# tests/_lerobot.py: {item_set_hash} is the manifest hash of the fixture item set, {env_version} the compact-JSON hash
+# eval_libero.py writes for env_version.json (the real one of base-1-eval2-500), {sampler} the deployment sampler of the
+# cuts (the real sampler.json, JSON flow), {evaluator_hash} the identity hash of libero.lerobot_items@0.1 (EXT-6).
+# The shape of the area's registration (the maintainers' decision record "Area 8 (VLA) decisions"; area8-vla README section
+# 5): deciding binary T3 metric success, superiority with margin 0, K 2, eval seeds 11 and 12, alpha 0.025 one-sided,
+# power 0.8, sigma_plan fixed (the area's sigma comes from the probe pilot), both 05 section 6.1 disclosures. Fixture
+# sigma 0.5 and planning effect 0.3: n_required = 22 <= the scenario's 40 items.
+registration_version: 1
+registration_id: ext-lerobot-fixture-superiority-v1
+signed_by: prototype-unsigned
+workflow: ext-lerobot-fixture
+gate: quality_gate
+clause:
+  type: superiority
+  metric: success
+  direction: higher_is_better
+  margin: 0.0
+  alpha: 0.025
+  power: 0.8
+  planning_effect: 0.3
+  sigma_plan: fixed
+  unit: item
+  samples_per_item: 2
+  eval_seeds: [11, 12]
+  interval: cluster_bootstrap
+  blocking: true
+margin_justification: Fixture value (superiority, delta_sup = 0).
+sigma_pilot:
+  sigma: 0.5
+  source: Fixture value; the area's sigma is fixed from the probe items (max(1.5 x ucb80(s_pilot), sqrt(2) x ucb80(s_base))).
+baseline_pilot_mean: 0.26
+construct_alignment: >-
+  success is the BDDL goal check of the LIBERO simulator in which the training demonstrations were recorded and
+  rendered; a pass shows more task completions from held-out initial states in that simulator, not a real-robot gain.
+shared_annotation: >-
+  The success labels are LIBERO's BDDL goal checks of the same ten tasks, which probably filtered the demonstrations
+  (unverified); part of a gain may be learning that filter's convention.
+eval_distribution:
+  item_set_hash: "{item_set_hash}"
+  env_version: "{env_version}"
+sampler: {sampler}
+evaluators:
+  - id: libero.lerobot_items@0.1
+    manifest_hash: "{evaluator_hash}"
+multiplicity:
+  plan: single_gate
+  family: null
+analysis_code_version: gatedtrain 0.3.0
+bootstrap:
+  replicates: 10000
+  seed: 20261115
+pairing:
+  max_unpaired: 0
+min_paired: 10
+contamination:
+  allow_exact_overlap: false

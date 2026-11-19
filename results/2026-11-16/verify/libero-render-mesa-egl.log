@@ -1,0 +1,83 @@
+[robosuite WARNING] No private macro file found! (__init__.py:7)
+[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)
+[robosuite WARNING] To setup, run: python <data-root>/ptc-mm/area8-vla/.venv/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+{
+  "assets_path": "<data-root>/ptc-mm/area8-vla/assets/libero-assets",
+  "config_file": "<data-root>/ptc-mm/area8-vla/libero-config/config.yaml",
+  "n_tasks": 10,
+  "tasks": [
+    "pick_up_the_alphabet_soup_and_place_it_in_the_basket",
+    "pick_up_the_cream_cheese_and_place_it_in_the_basket",
+    "pick_up_the_salad_dressing_and_place_it_in_the_basket",
+    "pick_up_the_bbq_sauce_and_place_it_in_the_basket",
+    "pick_up_the_ketchup_and_place_it_in_the_basket",
+    "pick_up_the_tomato_sauce_and_place_it_in_the_basket",
+    "pick_up_the_butter_and_place_it_in_the_basket",
+    "pick_up_the_milk_and_place_it_in_the_basket",
+    "pick_up_the_chocolate_pudding_and_place_it_in_the_basket",
+    "pick_up_the_orange_juice_and_place_it_in_the_basket"
+  ],
+  "init_states_task0": {
+    "type": "ndarray",
+    "shape": [
+      50,
+      110
+    ],
+    "dtype": "float64"
+  },
+  "task0": {
+    "name": "pick_up_the_alphabet_soup_and_place_it_in_the_basket",
+    "language": "pick up the alphabet soup and place it in the basket",
+    "bddl": "<data-root>/ptc-mm/area8-vla/.venv/lib/python3.12/site-packages/libero/libero/bddl_files/libero_object/pick_up_the_alphabet_soup_and_place_it_in_the_basket.bddl"
+  },
+  "physics_env_build_reset_s": 0.82,
+  "physics_10_steps_s": 0.07,
+  "physics_step": {
+    "obs_keys": [
+      "alphabet_soup_1_pos",
+      "alphabet_soup_1_quat",
+      "alphabet_soup_1_to_robot0_eef_pos",
+      "alphabet_soup_1_to_robot0_eef_quat",
+      "basket_1_pos",
+      "basket_1_quat",
+      "basket_1_to_robot0_eef_pos",
+      "basket_1_to_robot0_eef_quat",
+      "butter_1_pos",
+      "butter_1_quat",
+      "butter_1_to_robot0_eef_pos",
+      "butter_1_to_robot0_eef_quat"
+    ],
+    "n_obs_keys": 38,
+    "reward": 0.0,
+    "done": false,
+    "check_success": false,
+    "eef_pos": [
+      -0.1526,
+      -0.0063,
+      0.2484
+    ]
+  },
+  "render": {
+    "MUJOCO_GL": "egl",
+    "build_reset_step_s": 2.08,
+    "agentview_shape": [
+      256,
+      256,
+      3
+    ],
+    "agentview_mean": 102.438,
+    "wrist_mean": 102.684,
+    "gl_libs_mapped": [
+      "libEGL.so.1.1.0",
+      "libEGL_mesa.so.0.0.0",
+      "libGL.so.1.7.0",
+      "libGLX.so.0.0.0",
+      "libGLdispatch.so.0.0.0",
+      "libgallium-25.2.8-0ubuntu0.24.04.2.so",
+      "libglib-2.0.so.0.8000.0"
+    ]
+  },
+  "blocked_connections": [],
+  "peak_rss_gb": 2.91
+}

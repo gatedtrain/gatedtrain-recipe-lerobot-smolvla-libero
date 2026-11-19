@@ -1,0 +1,43 @@
+{
+  "base_model": {
+    "files": {
+      ".gitattributes": "sha256:32949ddb126c25a78e757b890078c46d0c8f8e899e56510a1efef817233149f9",
+      "Finetune_SmolVLA_notebook.ipynb": "sha256:7f445c913c508142b632245ae52494c23ac8b96109fe1f9144e34b8b9c60f92d",
+      "README.md": "sha256:1c4eab155e159a5fd3fd6c4d5f770c43f056665d73e11c0584e47f8b824d3c98",
+      "collage_small.gif": "sha256:c43f022bf1fdfbac82841ef95c7a99a7ead13ea67f2a7202f2fe57148f352c83",
+      "config.json": "sha256:650584b56c104720f7a3c91d1ec6bec9e8de8ac11e60c92ba2fa82d93eda147d",
+      "model.safetensors": "sha256:7cd549ac2351fb069c0ddb3c34ad2d09cfc92b56a15dccdfc2e41467aaca01eb",
+      "policy_postprocessor.json": "sha256:2b78bb742065288df2ec63b0ee35f97a1f6950171cf2272f7e34b1fe3873b17b",
+      "policy_postprocessor_step_0_unnormalizer_processor.safetensors": "sha256:490ab239d96e263687c0b2e386a0afbc235a2eceb9857c36ed32f2f162a3e7c8",
+      "policy_preprocessor.json": "sha256:7683d648280a72f0d51e869fb8dd1596beed90b7f84849330cf1bc26634a4bd6",
+      "policy_preprocessor_step_5_normalizer_processor.safetensors": "sha256:490ab239d96e263687c0b2e386a0afbc235a2eceb9857c36ed32f2f162a3e7c8"
+    },
+    "files_sha256": "sha256:c1a34b7f8d9a13652da1db7d36437310a361b0bd4ad2e562c4304234fd1afc00",
+    "local_dir": "/srv/gatedtrain/lerobot-smolvla-libero/runtime/models/smolvla_base",
+    "n_files": 10,
+    "repo": "lerobot/smolvla_base",
+    "repo_type": "model",
+    "revision": "5e8d12a6e2975b0e5e5fce7c8caf47c371d257b6"
+  },
+  "dataset": {
+    "episodes": [
+      807,
+      1260
+    ],
+    "files_sha256": "sha256:734b77e0fc89e95bb36c80612b95ca2c765ce11dd8e8c3b6979c02bc8c0a027e",
+    "local_dir": "/srv/gatedtrain/lerobot-smolvla-libero/runtime/data/lerobot/libero",
+    "n_files": 457,
+    "repo": "lerobot/libero",
+    "repo_type": "dataset",
+    "revision": "a1aaacb7f6cd6ee5fb43120f673cebb0cfea7dd4"
+  },
+  "init_checkpoint": null,
+  "vlm_backbone": {
+    "files_sha256": "sha256:5466718e34ae394f352fd1f6ed006e0998608e74c0346c0b7c78bae26f07e8f3",
+    "local_dir": "/srv/gatedtrain/lerobot-smolvla-libero/runtime/models/SmolVLM2-500M-Video-Instruct",
+    "n_files": 14,
+    "repo": "HuggingFaceTB/SmolVLM2-500M-Video-Instruct",
+    "repo_type": "model",
+    "revision": "4cde9d208e19519c36917aa170fffc7e381aa0ad"
+  }
+}

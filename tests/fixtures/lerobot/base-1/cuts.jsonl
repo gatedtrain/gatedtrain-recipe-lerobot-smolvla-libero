@@ -1,0 +1,12 @@
+{"cut": "cuts/checkpoint-250", "samples_consumed": 8000, "step": 250, "utc": "2026-11-15T06:09:11Z"}
+{"cut": "cuts/checkpoint-500", "samples_consumed": 16000, "step": 500, "utc": "2026-11-15T06:11:27Z"}
+{"cut": "cuts/checkpoint-750", "samples_consumed": 24000, "step": 750, "utc": "2026-11-15T06:13:43Z"}
+{"cut": "cuts/checkpoint-1000", "samples_consumed": 32000, "step": 1000, "utc": "2026-11-15T06:15:58Z"}
+{"cut": "cuts/checkpoint-1250", "samples_consumed": 40000, "step": 1250, "utc": "2026-11-15T06:18:13Z"}
+{"cut": "cuts/checkpoint-1500", "samples_consumed": 48000, "step": 1500, "utc": "2026-11-15T06:20:29Z"}
+{"cut": "cuts/checkpoint-1750", "samples_consumed": 56000, "step": 1750, "utc": "2026-11-15T06:22:45Z"}
+{"cut": "cuts/checkpoint-2000", "samples_consumed": 64000, "step": 2000, "utc": "2026-11-15T06:24:59Z"}
+{"cut": "cuts/checkpoint-2250", "samples_consumed": 71976, "step": 2250, "utc": "2026-11-15T06:27:15Z"}
+{"cut": "cuts/checkpoint-2500", "samples_consumed": 79976, "step": 2500, "utc": "2026-11-15T06:29:30Z"}
+{"cut": "cuts/checkpoint-2750", "samples_consumed": 87976, "step": 2750, "utc": "2026-11-15T06:31:45Z"}
+{"cut": "cuts/checkpoint-3000", "samples_consumed": 95976, "step": 3000, "utc": "2026-11-15T06:34:06Z"}

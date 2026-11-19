@@ -1,0 +1,38 @@
+# Multimodal prototype, area "VLA" (row 8 of the multimodal prototype scope, the maintainers' area 8 (VLA) decisions): SmolVLA SFT on
+# LIBERO-Object with LeRobot 0.7.0 on one 24 GB GPU (developed on an RTX 4090; prototype, unpromotable).
+# Runtime kind `venv_in_container` (MULTIMODAL-SPEC MM-32): this lock builds a host venv that is mounted read-only
+# into the derived image `gatedtrain-a8-runtime:1` (`../container/Containerfile`, on `gatedtrain-a5-runtime:1`). See README.md.
+#
+# Pins:
+#   lerobot 0.7.0 (PyPI, 2026-11-05), extras: `smolvla` (transformers 5.22.x, num2words, accelerate), `libero`
+#   (hf-libero 0.1.4 -> robosuite 1.4.0, robomimic 0.2.0, bddl 1.0.1, mujoco <3.9, scipy), `training` (datasets,
+#   accelerate, trackio; `lerobot-train`). `dataset` (datasets, PyAV, torchcodec) comes in through `libero`/`training`.
+#   torch 2.15.0 / torchvision 0.29.2 from PyPI (the CUDA 13.2 wheels of areas 4 and 5, driver 610.57).
+#   av (PyAV) pinned explicitly: its wheels bundle FFmpeg with libdav1d, so the AV1 videos of lerobot/libero decode
+#   with `video_backend=pyav` and the image needs no system FFmpeg (torchcodec would).
+# Date cut 2026-11-06 instead of the areas' 2026-10-29: transformers 5.22.1 (required by lerobot 0.7.0) was uploaded
+# 2026-10-30 and lerobot 0.7.0 itself 2026-11-05.
+# Build: `hf-egl-probe` (hf-libero) and `egl-probe` (robomimic) are sdists whose setup.py runs `cmake`; the host has
+# no cmake, so the PyPI `cmake` wheel is added to their isolated build environments.
+[project]
+name = "gatedtrain-recipe-lerobot-smolvla-libero-runtime"
+version = "0.1.0"
+license = "Apache-2.0"
+requires-python = "==3.12.*"
+dependencies = [
+    "lerobot[smolvla,libero,training]==0.7.0",
+    "torch==2.15.0",
+    "torchvision==0.29.2",
+    "av>=15.0.0,<16.0.0",
+]
+
+[tool.uv]
+package = false
+# Linux x86_64 only.
+environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'"]
+# Every transitive dependency resolves to a release uploaded before 2026-11-06.
+exclude-newer = "2026-11-06T00:00:00Z"
+
+[tool.uv.extra-build-dependencies]
+hf-egl-probe = ["cmake>=3.29,<4"]
+egl-probe = ["cmake>=3.29,<4"]

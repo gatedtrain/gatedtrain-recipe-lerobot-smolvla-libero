@@ -1,0 +1,85 @@
+# Amendment for the rename to gatedtrain 0.3.0 (05 section 3.7, R17-1/R17-3) of registration-ptc-hub.yaml (`amends`,
+# in this directory). Besides analysis_code_version (ptc-hub 0.2.0 -> gatedtrain 0.3.0), `amends` and `created_at`
+# it changes only evaluators[0].manifest_hash sha256:432748cb... -> sha256:f070dea9...: the scorer eval_libero.py
+# (and its member a8_common.py) was re-pinned for the rename (scoring unchanged): composite code_sha256
+# sha256:d2ab09c6... -> sha256:335559ce.... The change is not a rename by the published name map alone (a8_common.py's
+# fallback HF_HOME directory name changed too), so no rename_proof is given. post_hoc stays true, as in the prior
+# amendment: that amendment was written after the gate's result was observed, so a PASS is reported INCONCLUSIVE with
+# reason post_hoc. eval_distribution (item set, env_version) is unchanged. The gate's own verdict is reproduced with
+# the original registration and ptc 78eb913 (RESULT.md).
+# Area "VLA" pre-registration (the maintainers' decision record "Area 8 (VLA) decisions", "Area 8 base cut", "Area 8 adapter
+# and smoke binding"). LeRobot 0.7.0 SmolVLA expert-only SFT, stage 2 (2,500 steps from the stage-1 cut base-1
+# checkpoint-500, seed 2000) against that stage-1 cut. prototype, unpromotable. Unsigned. Values fixed after the stage-2
+# smoke (records/area8-vla/train-smoke-1, eval-smoke-base-1, eval-smoke-cut-1) and before the full run's first START.
+# Deciding binary T3 metric `success` (BDDL goal check), blocking; superiority with margin 0; alpha 0.025 one-sided,
+# power 0.8, m = 1; N 400 gate items (10 LIBERO-Object tasks x 40 held-out init states), K 2, eval seeds 11 and 12.
+# sigma_plan fixed 0.84 = max(1.5 x ucb80(s_pilot), sqrt(2) x ucb80(s_base)) from the smoke (50 gate items, 5 per task,
+# seed 11: s_pilot 0.5051 = SD of the paired differences smoke cut 250 minus base, s_base 0.4041; ucb80 factor 1.0995
+# (49 df): 0.5553, 0.4443; 1.5 x 0.5553 = 0.833, sqrt(2) x 0.4443 = 0.628; 0.833 rounded up). Single-seed pilot SDs
+# are used for the two-seed item means (conservative). Planning effect 0.12: n_required = ceil(((1.95996 + 0.84162) x
+# 0.84 / 0.12)^2) = 385 <= 400. Per-task success and steps_to_success are reported only. Any later change is an
+# amendment.
+registration_version: 1
+registration_id: mm-a8-vla-success-superiority-v1
+signed_by: prototype-unsigned
+created_at: "2026-11-18T06:11:07Z"
+amends: "sha256:6bce6de0f60cbb1628dd5dcd38a4f83e6e5de33d5bcbc98c7512e33498422b29"
+workflow: mm-a8-vla-lerobot-smolvla
+gate: quality_gate
+clause:
+  type: superiority
+  metric: success
+  direction: higher_is_better
+  margin: 0.0
+  alpha: 0.025
+  power: 0.8
+  planning_effect: 0.12
+  sigma_plan: fixed
+  unit: item
+  samples_per_item: 2
+  eval_seeds: [11, 12]
+  interval: cluster_bootstrap
+  blocking: true
+margin_justification: >-
+  Superiority with delta_sup = 0: any held-out gain of LIBERO-Object task success over the stage-1 base cut counts.
+  Prototype value, not reviewed by a named team.
+sigma_pilot:
+  sigma: 0.84
+  source: >-
+    GPU smoke (records/area8-vla/train-smoke-1, eval-smoke-base-1, eval-smoke-cut-1): 50 gate items (5 init states per
+    task), seed 11, the deployment sampler. Success base-1 checkpoint-500 0.20, smoke-1 checkpoint-250 (250 steps) 0.30;
+    paired differences SD 0.5051 (13 discordant, 9 positive), base item SD 0.4041. sigma_plan = max(1.5 x
+    ucb80(0.5051), sqrt(2) x ucb80(0.4041)) = 0.833, rounded up to 0.84.
+baseline_pilot_mean: 0.20    # base-1 checkpoint-500, 50 gate items, seed 11 (probe items, seed 11: 0.26)
+construct_alignment: >-
+  success is the BDDL goal check of the LIBERO simulator in which the training demonstrations were recorded and
+  rendered: a pass shows that the policy completes the ten LIBERO-Object tasks from held-out benchmark initial states
+  more often in that simulator, not a gain in real-robot manipulation or under another simulator or renderer
+  (05 section 6.1, R15-1 analogue).
+shared_annotation: >-
+  The success labels are LIBERO's BDDL goal checks of the same ten tasks, the check that probably filtered the
+  training demonstrations (454 of 500 remain; unverified); no training stage consumed the evaluation's initial states
+  as far as can be checked (the dataset keeps no initial object poses, so exact overlap is keyed by item id and is 0 by
+  construction). Part of a gain may be learning that filter's convention: a pass shows more BDDL-goal completions from
+  held-out initial states of the ten tasks, not a general manipulation gain (05 section 6.1, R16-1).
+eval_distribution:
+  item_set_hash: "sha256:06003603876057c1bcfdb51dbabf147e76c7b6f1d1377bf53d4c31d5d7b35c8d"   # manifest of runtime/items-gate/ (re-pinned, see above)
+  env_version: "sha256:d0cedb3cac1521b3ae7a53125d8198ac06a4d09dd9513ab7ab779d585b11881f"      # eval_libero.py env_version.json
+# The deployment sampler (every cut's sampler.json; a8_common.deploy_sampler).
+sampler: {"action_postprocess": "policy postprocessor (unnormalizer), float32, no clipping (as lerobot-eval rollout)", "chunk_size": 50, "control_mode": "relative", "hard_reset": true, "init_states": true, "max_action_dim": 32, "n_action_steps": 50, "noise": "per (eval_seed, item): torch.Generator('cpu').manual_seed(derive_seed('libero-noise', eval_seed, item)); one standard-normal float32 draw of shape (1, chunk_size, max_action_dim) per environment step, passed as select_action(noise=...), which uses it when the action queue is empty (policies/smolvla/modeling_smolvla.py:256-285, :790-794); torch global RNG reseeded with derive_seed('libero-torch', eval_seed, item) before the episode", "num_steps": 10, "observation": {"camera_name": "agentview_image,robot0_eye_in_hand_image", "camera_name_mapping": {"agentview_image": "image", "robot0_eye_in_hand_image": "image2"}, "canonicalization": "lerobot.sim.integrations.libero.canonical_observation (images rotated 180 degrees; state = eef pos, axis-angle, gripper qpos, 8-D)", "height": 360, "obs_type": "pixels_agent_pos", "width": 360}, "policy_type": "smolvla", "rename_map": {"observation.images.image": "observation.images.camera1", "observation.images.image2": "observation.images.camera2"}, "resize_imgs_with_padding": [512, 512], "tokenizer_max_length": 48}
+evaluators:
+  - id: libero.lerobot_items@0.1
+    manifest_hash: "sha256:f070dea953c932fd680815364fc1bb5e73951286c4dcbf8108c322cdebd2e0f3"
+multiplicity:
+  plan: single_gate
+  family: null
+analysis_code_version: gatedtrain 0.3.0
+bootstrap:
+  replicates: 10000
+  seed: 20261117
+pairing:
+  max_unpaired: 0
+min_paired: 10
+contamination:
+  allow_exact_overlap: false
+post_hoc: true

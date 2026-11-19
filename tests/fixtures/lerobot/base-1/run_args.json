@@ -1,0 +1,191 @@
+{
+  "attempt": 1,
+  "base_checkpoint": null,
+  "base_cut": null,
+  "base_ref": {
+    "base_model": {
+      "files_sha256": "sha256:c1a34b7f8d9a13652da1db7d36437310a361b0bd4ad2e562c4304234fd1afc00",
+      "local_dir": "/srv/gatedtrain/lerobot-smolvla-libero/runtime/models/smolvla_base",
+      "n_files": 10,
+      "repo": "lerobot/smolvla_base",
+      "repo_type": "model",
+      "revision": "5e8d12a6e2975b0e5e5fce7c8caf47c371d257b6"
+    },
+    "dataset": {
+      "episodes": [
+        807,
+        1260
+      ],
+      "files_sha256": "sha256:734b77e0fc89e95bb36c80612b95ca2c765ce11dd8e8c3b6979c02bc8c0a027e",
+      "local_dir": "/srv/gatedtrain/lerobot-smolvla-libero/runtime/data/lerobot/libero",
+      "n_files": 457,
+      "repo": "lerobot/libero",
+      "repo_type": "dataset",
+      "revision": "a1aaacb7f6cd6ee5fb43120f673cebb0cfea7dd4"
+    },
+    "init_checkpoint": null,
+    "vlm_backbone": {
+      "files_sha256": "sha256:5466718e34ae394f352fd1f6ed006e0998608e74c0346c0b7c78bae26f07e8f3",
+      "local_dir": "/srv/gatedtrain/lerobot-smolvla-libero/runtime/models/SmolVLM2-500M-Video-Instruct",
+      "n_files": 14,
+      "repo": "HuggingFaceTB/SmolVLM2-500M-Video-Instruct",
+      "repo_type": "model",
+      "revision": "4cde9d208e19519c36917aa170fffc7e381aa0ad"
+    }
+  },
+  "code_sha256": "sha256:65d0e9f4337d52de237936aaa714d4bf9f8efdc9099e57c1159001afc81ef2d7",
+  "common_sha256": "sha256:d01995ca744109caeee66fc4e40688d28270ddf8f9e2770ab20cf8d28d2ea23d",
+  "consumption_log": "samples.jsonl",
+  "consumption_semantics": "one line per training step, written and fsynced before the step's update: step (1-based, LeRobot's step counter after the update), epoch (0-based, counted from the samples consumed and the sampler length), n and per sample the anchor frame's index, episode_index, frame_index; each sample also loads the next chunk_size - 1 actions of the same episode (delta_timestamps). A cut at step k includes steps 1..k (cut.json last_step_included, samples_consumed).",
+  "created_at": "2026-11-15T05:52:56Z",
+  "cut_steps": [
+    250,
+    500,
+    750,
+    1000,
+    1250,
+    1500,
+    1750,
+    2000,
+    2250,
+    2500,
+    2750,
+    3000
+  ],
+  "cuts_dir": "cuts",
+  "dataset": {
+    "episodes": "807..1260 (454)",
+    "normalizer_stats": "dataset.meta.stats of lerobot/libero (whole dataset, README section 3), renamed; a fresh --policy.path run replaces the checkpoint's stats with them (lerobot_train.py:666-692)",
+    "rename_map": {
+      "observation.images.image": "observation.images.camera1",
+      "observation.images.image2": "observation.images.camera2"
+    },
+    "repo": "lerobot/libero",
+    "revision": "a1aaacb7f6cd6ee5fb43120f673cebb0cfea7dd4",
+    "root": "/srv/gatedtrain/lerobot-smolvla-libero/runtime/data/lerobot/libero",
+    "video_backend": "pyav"
+  },
+  "env_freeze_matches_runtime": true,
+  "framework": {
+    "entry": "lerobot.scripts.lerobot_train:main (in process, sys.argv set)",
+    "name": "lerobot",
+    "version": "0.7.0"
+  },
+  "lerobot_argv": [
+    "--policy.path=/srv/gatedtrain/lerobot-smolvla-libero/runtime/models/smolvla_base",
+    "--policy.vlm_model_name=/srv/gatedtrain/lerobot-smolvla-libero/runtime/models/SmolVLM2-500M-Video-Instruct",
+    "--policy.load_vlm_weights=false",
+    "--policy.input_features=null",
+    "--policy.output_features=null",
+    "--policy.device=cuda",
+    "--policy.push_to_hub=false",
+    "--policy.n_action_steps=50",
+    "--policy.train_expert_only=true",
+    "--policy.freeze_vision_encoder=true",
+    "--dataset.repo_id=lerobot/libero",
+    "--dataset.root=/srv/gatedtrain/lerobot-smolvla-libero/runtime/data/lerobot/libero",
+    "--dataset.revision=a1aaacb7f6cd6ee5fb43120f673cebb0cfea7dd4",
+    "--dataset.episodes=[807,808,809,810,811,812,813,814,815,816,817,818,819,820,821,822,823,824,825,826,827,828,829,830,831,832,833,834,835,836,837,838,839,840,841,842,843,844,845,846,847,848,849,850,851,852,853,854,855,856,857,858,859,860,861,862,863,864,865,866,867,868,869,870,871,872,873,874,875,876,877,878,879,880,881,882,883,884,885,886,887,888,889,890,891,892,893,894,895,896,897,898,899,900,901,902,903,904,905,906,907,908,909,910,911,912,913,914,915,916,917,918,919,920,921,922,923,924,925,926,927,928,929,930,931,932,933,934,935,936,937,938,939,940,941,942,943,944,945,946,947,948,949,950,951,952,953,954,955,956,957,958,959,960,961,962,963,964,965,966,967,968,969,970,971,972,973,974,975,976,977,978,979,980,981,982,983,984,985,986,987,988,989,990,991,992,993,994,995,996,997,998,999,1000,1001,1002,1003,1004,1005,1006,1007,1008,1009,1010,1011,1012,1013,1014,1015,1016,1017,1018,1019,1020,1021,1022,1023,1024,1025,1026,1027,1028,1029,1030,1031,1032,1033,1034,1035,1036,1037,1038,1039,1040,1041,1042,1043,1044,1045,1046,1047,1048,1049,1050,1051,1052,1053,1054,1055,1056,1057,1058,1059,1060,1061,1062,1063,1064,1065,1066,1067,1068,1069,1070,1071,1072,1073,1074,1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,1085,1086,1087,1088,1089,1090,1091,1092,1093,1094,1095,1096,1097,1098,1099,1100,1101,1102,1103,1104,1105,1106,1107,1108,1109,1110,1111,1112,1113,1114,1115,1116,1117,1118,1119,1120,1121,1122,1123,1124,1125,1126,1127,1128,1129,1130,1131,1132,1133,1134,1135,1136,1137,1138,1139,1140,1141,1142,1143,1144,1145,1146,1147,1148,1149,1150,1151,1152,1153,1154,1155,1156,1157,1158,1159,1160,1161,1162,1163,1164,1165,1166,1167,1168,1169,1170,1171,1172,1173,1174,1175,1176,1177,1178,1179,1180,1181,1182,1183,1184,1185,1186,1187,1188,1189,1190,1191,1192,1193,1194,1195,1196,1197,1198,1199,1200,1201,1202,1203,1204,1205,1206,1207,1208,1209,1210,1211,1212,1213,1214,1215,1216,1217,1218,1219,1220,1221,1222,1223,1224,1225,1226,1227,1228,1229,1230,1231,1232,1233,1234,1235,1236,1237,1238,1239,1240,1241,1242,1243,1244,1245,1246,1247,1248,1249,1250,1251,1252,1253,1254,1255,1256,1257,1258,1259,1260]",
+    "--dataset.video_backend=pyav",
+    "--dataset.use_imagenet_stats=false",
+    "--rename_map={\"observation.images.image\":\"observation.images.camera1\",\"observation.images.image2\":\"observation.images.camera2\"}",
+    "--output_dir=/out/lerobot",
+    "--job_name=a8_base",
+    "--seed=1000",
+    "--batch_size=32",
+    "--steps=3000",
+    "--save_freq=250",
+    "--save_checkpoint=true",
+    "--log_freq=50",
+    "--num_workers=8",
+    "--env_eval_freq=0",
+    "--eval_steps=0",
+    "--trackio.enable=false"
+  ],
+  "lerobot_output_dir": "lerobot",
+  "policy_path": "/srv/gatedtrain/lerobot-smolvla-libero/runtime/models/smolvla_base",
+  "profile": "base",
+  "sampler": {
+    "action_postprocess": "policy postprocessor (unnormalizer), float32, no clipping (as lerobot-eval rollout)",
+    "chunk_size": 50,
+    "control_mode": "relative",
+    "hard_reset": true,
+    "init_states": true,
+    "max_action_dim": 32,
+    "n_action_steps": 50,
+    "noise": "per (eval_seed, item): torch.Generator('cpu').manual_seed(derive_seed('libero-noise', eval_seed, item)); one standard-normal float32 draw of shape (1, chunk_size, max_action_dim) per environment step, passed as select_action(noise=...), which uses it when the action queue is empty (policies/smolvla/modeling_smolvla.py:256-285, :790-794); torch global RNG reseeded with derive_seed('libero-torch', eval_seed, item) before the episode",
+    "num_steps": 10,
+    "observation": {
+      "camera_name": "agentview_image,robot0_eye_in_hand_image",
+      "camera_name_mapping": {
+        "agentview_image": "image",
+        "robot0_eye_in_hand_image": "image2"
+      },
+      "canonicalization": "lerobot.sim.integrations.libero.canonical_observation (images rotated 180 degrees; state = eef pos, axis-angle, gripper qpos, 8-D)",
+      "height": 360,
+      "obs_type": "pixels_agent_pos",
+      "width": 360
+    },
+    "policy_type": "smolvla",
+    "rename_map": {
+      "observation.images.image": "observation.images.camera1",
+      "observation.images.image2": "observation.images.camera2"
+    },
+    "resize_imgs_with_padding": [
+      512,
+      512
+    ],
+    "tokenizer_max_length": 48
+  },
+  "sampler_sha256": "sha256:dcc283f18311432a6445fbecab821f64271b3bc90d097f241c550eafc433a6c7",
+  "schema": "ptc_mm.lerobot_run_args",
+  "schema_version": "1.0",
+  "script_sha256": "sha256:0bbfba41d5c93b8219b229a1fdc39e4a0fcf42ec1d481fdd2aaee3cf517167c6",
+  "seed": 1000,
+  "seed_derivation": "lerobot-train --seed: set_seed(seed) (lerobot_train.py:574-575) and the data order EpisodeAwareSampler(shuffle=True, seed) = a pure function of (seed, epoch) (lerobot_train.py:362-372, datasets/sampler.py:128-153)",
+  "settings": {
+    "batch_size": 32,
+    "cut_steps": [
+      250,
+      500,
+      750,
+      1000,
+      1250,
+      1500,
+      1750,
+      2000,
+      2250,
+      2500,
+      2750,
+      3000
+    ],
+    "decay_steps": null,
+    "device": "cuda",
+    "freeze_vision_encoder": true,
+    "full_ft": false,
+    "learning_rate": null,
+    "log_freq": 50,
+    "memory_every": 10,
+    "mixed_precision": "no",
+    "n_action_steps": 50,
+    "num_workers": 8,
+    "profile": "base",
+    "save_checkpoint": true,
+    "save_freq": 250,
+    "seed": 1000,
+    "stage": "base",
+    "steps": 3000,
+    "train_expert_only": true,
+    "use_imagenet_stats": false,
+    "warmup_steps": null
+  },
+  "stage": "base",
+  "tags": [
+    "prototype",
+    "unpromotable"
+  ],
+  "tokenizer_override": {
+    "tokenizer_processor.tokenizer_name": "/srv/gatedtrain/lerobot-smolvla-libero/runtime/models/SmolVLM2-500M-Video-Instruct",
+    "why": "policy_preprocessor.json names the Hub repo id; offline training needs the local directory (README section 0.4)"
+  }
+}

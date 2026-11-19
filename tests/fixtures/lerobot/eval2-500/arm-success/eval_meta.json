@@ -1,0 +1,66 @@
+{
+  "adapter": "lerobot_smolvla",
+  "checkpoint": {
+    "base_model_hash": null,
+    "model_hash": null
+  },
+  "created_at": "2026-11-15T08:40:18Z",
+  "direction": "higher_is_better",
+  "env_version_sha256": "sha256:d0cedb3cac1521b3ae7a53125d8198ac06a4d09dd9513ab7ab779d585b11881f",
+  "eval_seeds": [
+    11
+  ],
+  "evaluator_id": "libero.lerobot_items@0.1",
+  "framework": {
+    "name": "lerobot",
+    "version": "0.7.0"
+  },
+  "item_set_hash": null,
+  "metric": "success",
+  "normalizer_sha256": "sha256:a780970472e85d8669432d041f5dcbf8412c9c96c031b82837bc6d76a57dd3e6",
+  "sampler": {
+    "action_postprocess": "policy postprocessor (unnormalizer), float32, no clipping (as lerobot-eval rollout)",
+    "chunk_size": 50,
+    "control_mode": "relative",
+    "hard_reset": true,
+    "init_states": true,
+    "max_action_dim": 32,
+    "n_action_steps": 50,
+    "noise": "per (eval_seed, item): torch.Generator('cpu').manual_seed(derive_seed('libero-noise', eval_seed, item)); one standard-normal float32 draw of shape (1, chunk_size, max_action_dim) per environment step, passed as select_action(noise=...), which uses it when the action queue is empty (policies/smolvla/modeling_smolvla.py:256-285, :790-794); torch global RNG reseeded with derive_seed('libero-torch', eval_seed, item) before the episode",
+    "num_steps": 10,
+    "observation": {
+      "camera_name": "agentview_image,robot0_eye_in_hand_image",
+      "camera_name_mapping": {
+        "agentview_image": "image",
+        "robot0_eye_in_hand_image": "image2"
+      },
+      "canonicalization": "lerobot.sim.integrations.libero.canonical_observation (images rotated 180 degrees; state = eef pos, axis-angle, gripper qpos, 8-D)",
+      "height": 360,
+      "obs_type": "pixels_agent_pos",
+      "width": 360
+    },
+    "policy_type": "smolvla",
+    "rename_map": {
+      "observation.images.image": "observation.images.camera1",
+      "observation.images.image2": "observation.images.camera2"
+    },
+    "resize_imgs_with_padding": [
+      512,
+      512
+    ],
+    "tokenizer_max_length": 48
+  },
+  "sampler_hash": "sha256:dcc283f18311432a6445fbecab821f64271b3bc90d097f241c550eafc433a6c7",
+  "schema": "ptc_skel.item_eval",
+  "schema_version": "1.0",
+  "score_range": [
+    0,
+    1
+  ],
+  "scorer": {
+    "code_sha256": "sha256:bafc1ce89922abcd1c1db057efba77cfa79ccfe7fbec5d2610edbb095e76b6c7",
+    "name": "libero_bddl_check_success",
+    "version": "eval_libero@0.1; success = LiberoEnv.step is_success (env.check_success(), BDDL goal) within 280 steps after 10 settle steps; score 1 success, 0 timeout/failed/nan_action; simulator exceptions, worker death and the item wall-clock timeout (300 s, retried once alone) are simulator_error; hf-libero 0.1.4 robosuite 1.4.0 mujoco 3.8.1 lerobot 0.7.0",
+    "weights_sha256": null
+  }
+}

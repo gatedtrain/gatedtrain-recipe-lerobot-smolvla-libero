@@ -1,0 +1,44 @@
+{
+  "assets": {
+    "repo": "lerobot/libero-assets",
+    "revision": "0b3ea86be5fe169d0fd036ae63d1070ec09e90f6"
+  },
+  "assets_manifest_hash": "sha256:d804b07a63277184502d8633e6533deade8c2575a9c2757970465325ded6dcbd",
+  "env_id": "lerobot.sim.integrations.libero.LiberoEnv/libero_object",
+  "env_kwargs": {
+    "camera_name": "agentview_image,robot0_eye_in_hand_image",
+    "control_freq": 20,
+    "control_mode": "relative",
+    "hard_reset": true,
+    "init_states": true,
+    "max_steps": 280,
+    "num_steps_wait": 10,
+    "obs_type": "pixels_agent_pos",
+    "observation_height": 360,
+    "observation_width": 360,
+    "suite": "libero_object"
+  },
+  "init_files_sha256": {
+    "pick_up_the_alphabet_soup_and_place_it_in_the_basket.pruned_init": "sha256:b9023e5546b239cacb2aaa3c76df3b73c3de6f97500fea5e27a0db9827002a19",
+    "pick_up_the_bbq_sauce_and_place_it_in_the_basket.pruned_init": "sha256:c524077b0c23006f28fc06760a5b5ab37eee67287b5329e84a34b0a8bd599b4a",
+    "pick_up_the_butter_and_place_it_in_the_basket.pruned_init": "sha256:f0925a8653c5902c5a4d78a2053365382ad7d05be7f059abe19c2004ffc5dc59",
+    "pick_up_the_chocolate_pudding_and_place_it_in_the_basket.pruned_init": "sha256:1124189363e76609da182dd92217cd02c41be58e88c42e3949d23ba160da75a5",
+    "pick_up_the_cream_cheese_and_place_it_in_the_basket.pruned_init": "sha256:5ea5483bca8abd80a8f1935e2c60570d60eaaf6a985c283d62805b46fb76aa94",
+    "pick_up_the_ketchup_and_place_it_in_the_basket.pruned_init": "sha256:b987f7b11e8f9b47353cd7882e1da38ecdf6ec9715ad8a84346583ea71049fd3",
+    "pick_up_the_milk_and_place_it_in_the_basket.pruned_init": "sha256:4a86269faf4c98baff4c1428997ac828d00c56922a9a131be94e19b6027e1db2",
+    "pick_up_the_orange_juice_and_place_it_in_the_basket.pruned_init": "sha256:35b19ffab1fe08c6457ebd732c37d04b9bc0d22b7ce7de015986092ddddea151",
+    "pick_up_the_salad_dressing_and_place_it_in_the_basket.pruned_init": "sha256:6f6793ee550419a4a79dcb6ac83a9ba7bbf5e76e92fef26b82b6a7a10f72b04a",
+    "pick_up_the_tomato_sauce_and_place_it_in_the_basket.pruned_init": "sha256:2326da7ccacd3ebc75d80847f92d2e310b537b8dbbd8a76840a29b13f00f9a65"
+  },
+  "nondefault": {},
+  "package": "hf-libero",
+  "success": "env.check_success() (the task's BDDL goal), any step; first success ends the episode",
+  "version": "0.1.4",
+  "versions": {
+    "bddl": "1.0.1",
+    "hf-libero": "0.1.4",
+    "lerobot": "0.7.0",
+    "mujoco": "3.8.1",
+    "robosuite": "1.4.0"
+  }
+}

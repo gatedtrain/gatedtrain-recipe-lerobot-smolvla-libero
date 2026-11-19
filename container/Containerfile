@@ -1,0 +1,35 @@
+# Area 8 (VLA: LeRobot 0.7.0, SmolVLA SFT, LIBERO-Object) runtime image `gatedtrain-a8-runtime:1`: the area-5 image plus the
+# EGL/OpenGL/OSMesa system libraries that MuJoCo/robosuite need to render LIBERO offscreen
+# (the maintainers' decision record, not published, "Area 8 (VLA) decisions"). Python and the area venv stay mounted read-only from the
+# host (runtime kind venv_in_container, MM-32); the image adds system libraries only.
+#
+# Rendering paths:
+#   - GPU EGL (MUJOCO_GL=egl, PYOPENGL_PLATFORM=egl): libglvnd's libEGL dispatches to the NVIDIA vendor library
+#     libEGL_nvidia.so.0, which the NVIDIA container toolkit injects only when the driver capabilities include
+#     `graphics`. The CUDA base image sets `compute,utility`, so this image sets `compute,utility,graphics` and
+#     writes the glvnd vendor file 10_nvidia.json (as NVIDIA's former cudagl images did; harmless if the toolkit
+#     also mounts one). robosuite picks the EGL device from MUJOCO_EGL_DEVICE_ID, else from CUDA_VISIBLE_DEVICES,
+#     and fails on an empty CUDA_VISIBLE_DEVICES (robosuite/renderers/context/egl_context.py:39-56).
+#   - CPU fallbacks: OSMesa (MUJOCO_GL=osmesa, PYOPENGL_PLATFORM=osmesa; libosmesa6) and Mesa's software EGL
+#     (libegl-mesa0, llvmpipe), the latter verified on a CPU (runtime/README.md, P0).
+#
+# Build chain: the base `gatedtrain-a5-runtime:1` is a local tag built from Containerfile.a5 in this directory (a copy
+# of the SD3.5 OCR recipe's container/Containerfile with byte-identical instructions: FROM
+# docker.io/nvidia/cuda:13.0.3-devel-ubuntu24.04 pinned by digest, plus X11/GL libraries); build that image first
+# (-f Containerfile.a5), then this one. The published run's images were built under the earlier tags
+# `ptc-a5-runtime:1` and `ptc-a8-runtime:1`; the adapter pins the image by ID, not by tag.
+# Build (from this directory; the Ubuntu snapshot apt needs the network, as the base image's build):
+#   docker build --network host -t gatedtrain-a8-runtime:1 -f Containerfile .
+# Packages come from the Ubuntu snapshot of 2026-10-29 (the snapshot area 5 pinned), so a rebuild resolves the same
+# versions; the installed list is in /etc/ptc-a8-packages.txt (a file name kept from the earlier project name: the RUN
+# instruction stays byte-identical to the one that built the published run's image).
+FROM gatedtrain-a5-runtime:1
+RUN apt-get update --snapshot 20261029T000000Z \
+ && apt-get install -y --no-install-recommends --snapshot 20261029T000000Z libegl1 libopengl0 libgles2 libglvnd0 \
+    libegl-mesa0 libosmesa6 \
+ && rm -rf /var/lib/apt/lists/* \
+ && mkdir -p /usr/share/glvnd/egl_vendor.d \
+ && printf '{\n    "file_format_version" : "1.0.0",\n    "ICD" : {\n        "library_path" : "libEGL_nvidia.so.0"\n    }\n}\n' \
+    > /usr/share/glvnd/egl_vendor.d/10_nvidia.json \
+ && dpkg-query -W -f='${Package}=${Version}\n' > /etc/ptc-a8-packages.txt
+ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility,graphics
