@@ -43,11 +43,11 @@ gate's deciding metric is `success` (LIBERO's goal check) on 400 items, two seed
 |---|---|
 | Base (stage-1 `checkpoint-500`) | 0.2175 |
 | Trained (stage-2 `checkpoint-2500`) | 0.445 |
-| Gate | **PASS** under the original registration: +0.2275, 95% cluster-bootstrap interval [0.186, 0.270] |
+| Gate | **PASS** under the original registration; **INCONCLUSIVE (post_hoc)** under the registration amended for the renames: +0.2275, 95% cluster-bootstrap interval [0.186, 0.270] |
 
-The scorer and runtime pins changed after the gate ran (publication cleanup and renames). Re-judged with gatedtrain
-0.3.0 under the amended registration, the gate reports INCONCLUSIVE with reason `post_hoc`, with every statistic equal.
-The PASS verdict is that of the original registration.
+The renames changed the scorer and the item-set metadata after the gate ran: evaluator and item-set changes, not only
+a rename, so the amended registration is marked post hoc and reports INCONCLUSIVE; every statistic is equal to the
+original report's.
 
 `RESULT.md` has the full record: the registration, power, overlap with training, the impact query, the CPU probe, the
 amendments and a known limitation. The gate files are under `results/2026-11-16/`.
